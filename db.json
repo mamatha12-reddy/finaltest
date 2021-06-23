@@ -1,0 +1,14 @@
+{
+  "users": [
+   
+ {
+      "username": "mamatha",
+      "useremail": "mamatha@1234",
+      "userpassword": "9010066",
+      "userpic": {
+        "0": {}
+      },
+      "id": 4
+    }
+  ]
+}
