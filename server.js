@@ -42,8 +42,9 @@ app1.get('/*', (req, res)=> {
     })
   })
   
+  let port=process.env.PORT||8080
 //app1.use('/product',productapi)
-app1.listen(process.env.PORT,()=>
+app1.listen(port,()=>
 console.log("server is listening at 8080")
 )
 
