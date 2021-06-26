@@ -1,7 +1,7 @@
 import {BrowserRouter,Switch, Link,Route } from 'react-router-dom'
 import AddProduct from './AddProduct'
 import Test from './Test'
-import ViewProduct from './viewProduct'
+import ViewProduct from './ViewProduct'
 
 function AdminProfile(){
 return(
