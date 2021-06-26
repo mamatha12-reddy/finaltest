@@ -7,7 +7,7 @@ import {BrowserRouter,Switch, Link,Route } from 'react-router-dom'
 import OfShore from './components/OfShore'
 import Home from "./components/Home";
 import Test from './components/Test'
-import Products from "./components/Products";
+
 import AdminProfile from "./components/AdminProfile";
  
 function App() {
