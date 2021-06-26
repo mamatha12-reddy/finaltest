@@ -24,9 +24,7 @@ function App() {
 
   
       <ul className="nav bg-primary navbar-expand-sm d-flex justify-content-end">
-        <li className="nav-item">
-        <Link to="/Registration" className="nav-link text-white  "><h4>Registation</h4></Link>
-        </li>
+       
         <li className="nav-item">
         <Link to="/test" className="nav-link text-white  "><h4>Test</h4></Link>
         </li>
@@ -39,9 +37,15 @@ function App() {
         <Link to="/home" className="nav-link text-white"><h4>Home</h4></Link>
         </li>
         {
-          !userLoginStatus? <li className="nav-item">
+          !userLoginStatus? 
+          <ul className="nav bg-primary navbar-expand-sm d-flex justify-content-end">
+          <li className="nav-item">
           <Link to="/Login" className="nav-link text-white"><h4>Login</h4></Link>
-          </li>:
+          </li>
+           <li className="nav-item">
+           <Link to="/Registration" className="nav-link text-white  "><h4>Registation</h4></Link>
+           </li>
+           </ul>:
           <li className="nav-item">
           <Link to="/logout" className="nav-link text-white" onClick={()=>Logout()}><h4>logout</h4></Link>
   

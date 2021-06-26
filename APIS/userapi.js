@@ -208,7 +208,7 @@ userapi.post('/login', expressErrorHandler(async (req,res,next)=>{
     let usercollectionObject=req.app.get("usercollectionObject")
     let credintials=req.body;
     /////
-    console.log("the data in userobj",credintials)
+   // console.log("the data in userobj",credintials)
     let user =await usercollectionObject.findOne({username:credintials.username})
     if(user==null)
     {
@@ -223,10 +223,60 @@ userapi.post('/login', expressErrorHandler(async (req,res,next)=>{
        
         else{
             delete user.password;
-            let token=await jwt.sign({username:credintials.username},'abcd',{expiresIn:10})
+            let token=await jwt.sign({username:credintials.username},process.env.SECRET,{expiresIn:10})
             res.send({message:"login-success",token:token,username:credintials.username,userobj:user})
         }
     }
+}))
+/////adding items to cart
+userapi.post("/addtocart" ,expressErrorHandler(async(req,res)=>{
+    let userCartObj=req.body;
+   // console.log("the tranfered object",userCartObj)
+    let usercartcollectionObject=req.app.get("usercartcollectionObject")
+    let userInCart=await usercartcollectionObject.findOne({username:userCartObj.username})
+    if(userInCart===null)
+    {
+        let products=[];
+        products.push(userCartObj.product)
+        let newUserCartObject={username:userCartObj.username,products:products}
+        //console.log("the new object in cart",newUserCartObject)
+        await usercartcollectionObject.insertOne(newUserCartObject)
+        res.send({message:"product added to cart "})
+    
+    }
+    else{
+        userInCart.products.push(userCartObj.product)
+        await usercartcollectionObject.updateOne({username:userCartObj.username},{$set:{...userInCart}})
+        res.send({message:"product added successfully"})
+    }
+
+
+
+
+}))
+////////////////getting from cart
+userapi.get('/gettingfromcart/:username',expressErrorHandler( async (req,res,next)=>{
+   let username1=req.params.username
+  let usercartcollectionObject=req.app.get("usercartcollectionObject")
+ // delete usercartcollectionObject.username
+    let productList=await usercartcollectionObject.find({username:username1}).toArray()
+  //  let filter=usercartcollectionObject.find({username:usercartcollectionObject.username},{products:1})
+    res.send({message:productList})
+    //console.log("the product list",productList)
+}))
+/////////////////remove from cart
+userapi.post("/removefromcart/:username",expressErrorHandler(async(req,res)=>{
+let usercartcollectionObject=req.app.get("usercartcollectionObject")
+let productList=await usercartcollectionObject.findOne({username:req.params.username})
+//console.log("the sum",some)
+    let productname1=req.body;
+   // console.log("the cart item",usercartcollectionObject.find({username:'siri1234'}))
+    
+
+    //let deleteproduct=await usercartcollectionObject.deleteOne({:productname1})
+    //console.log("the deleteproduct",deleteproduct)
+    console.log("the params name",productname1)
+    
 }))
 ///////////////protect route
 userapi.get("/testing",verifytoken, expressErrorHandler((req,res)=>{

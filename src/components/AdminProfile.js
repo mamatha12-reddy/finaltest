@@ -11,19 +11,14 @@ return(
         <li className="nav-item">
         <Link to="/addproduct" className="nav-link text-danger  "><h4>Add Product</h4></Link>
         </li>
-        <li className="nav-item">
-        <Link to="/viewproduct" className="nav-link text-danger  "><h4>View Product</h4></Link>
-        </li>
+       
         </ul>
         <Switch>
       <Route path="/addproduct">
           <AddProduct/>
         </Route>
-        <Route path="/viewproduct">
-          <ViewProduct/>
-        </Route>
-
         </Switch>
+        <ViewProduct/>
 </BrowserRouter>
 
 )

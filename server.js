@@ -12,8 +12,9 @@ const adminapi=require('./APIS/adminapi')
 app1.use('/user',userapi)
 app1.use('/product',productapi)
 app1.use('/admin',adminapi)
+require('dotenv').config()
 //////////////db connection
-const dburl="mongodb+srv://mamatha:mamatha@cluster0.inrsm.mongodb.net/userdb?retryWrites=true&w=majority"
+const dburl=process.env.DATABASE_URL
  const mongoclient=require("mongodb").MongoClient;
  
  mongoclient.connect(dburl,{useNewUrlParser:true,useUnifiedTopology:true},(err,client)=>{
@@ -25,9 +26,11 @@ const dburl="mongodb+srv://mamatha:mamatha@cluster0.inrsm.mongodb.net/userdb?ret
          let usercollectionObject=databaseObj.collection("usercollection")
          let productcollectionObject=databaseObj.collection("productcollection1")
          let admincollectionObject=databaseObj.collection("admincollection")
+         let usercartcollectionObject=databaseObj.collection("usercartcollection")
          app1.set("usercollectionObject",usercollectionObject)
          app1.set("productcollectionObject",productcollectionObject)
          app1.set("admincollectionObject",admincollectionObject)
+         app1.set("usercartcollectionObject",usercartcollectionObject)
          console.log("DB server connection success")
      }
  })
@@ -40,7 +43,7 @@ app1.get('/*', (req, res)=> {
   })
   
 //app1.use('/product',productapi)
-app1.listen(8080,()=>
+app1.listen(process.env.PORT,()=>
 console.log("server is listening at 8080")
 )
 

@@ -82,15 +82,22 @@ const multerObj=multer({storage: clStorage})
         newUser.pfofileImge=req.file.path;
        // console.log("the hased password",hasedpassword)
      await productcollectionObject.insertOne(newUser)
-     res.send({message:"user created successfully"})
+     res.send({message:"product created successfully"})
    }
    else {
-    res.send({ message: "User already existed" })
+    res.send({ message: "product already existed" })
 }
 
 }))
-///////////////////////////////////////////////////////////////////////update user
-
+///////////////////////////////////////////////////////////////////////delete  product
+productapi.post("/deleteproduct", expressErrorHandler(async(req,res)=>{
+    let productcollectionObject=req.app.get("productcollectionObject")
+    let productObj=req.body;
+    let deleteproduct=await productcollectionObject.findOne({productname:productObj.productname})
+    console.log("the deleting product ",deleteproduct)
+   productcollectionObject.deleteOne({productname:productObj.productname})
+   res.send({message:"product deleted successfully"})
+}))
 
 module.exports=productapi;
 

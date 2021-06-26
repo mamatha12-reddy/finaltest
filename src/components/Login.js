@@ -45,7 +45,7 @@ function Login(props){
                    localStorage.setItem("token",resObj.token)
                    localStorage.setItem("username",resObj.username)
                   localStorage.setItem("user",JSON.stringify (resObj.userobj))
-                  
+                  localStorage.setItem("type",userObj.type)
                   
                    props.serUserLoginStatus(true)
                    if(userObj.type==="user")
