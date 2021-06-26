@@ -40,7 +40,8 @@ function UserRegistration(){
   
     return(
         <form className="w-75   container"onSubmit={handleSubmit(onFormSubmit)}>
-	    <div>
+	    <h1> UserRegistration</h1>
+        <div>
             
        <label htmlFor="un" className="mt-5"> UserName</label>
 		       <input type="text" id="un" 
