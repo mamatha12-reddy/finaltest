@@ -17,24 +17,9 @@ const {CloudinaryStorage}=require('multer-storage-cloudinary')
 
 
 
- //configure cloudinary
-cloudinary.config({
-    cloud_name: 'djqbwmvjg',
-    api_key: '492171555336437',
-    api_secret: 'OO5HtI8g0gpuIZyjR3m1jXa9-KE'
-});
-//configure cloudinary storage
-const clStorage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: async (req, file) => {
-        return {
-            folder: 'CDB21DX003',
-            public_key: file.fieldname + '-' + Data.now()
-        }
-    }
-})
+ 
 //configure multer
-const multerObj=multer({storage: clStorage})
+
  //create new user
  userapi.use(exp.json())
  /*userapi.post('/createuser',(req,res,next)=>{
@@ -90,7 +75,7 @@ const multerObj=multer({storage: clStorage})
      })*/
  }))
  //////////////////////////////////////////////////////////////////////crating user
- userapi.post("/createuser",multerObj.single('photo'), expressErrorHandler(async (req, res, next) => {
+ userapi.post("/createuser", expressErrorHandler(async (req, res, next) => {
     //get user obj
     let usercollectionObject=req.app.get("usercollectionObject")
     let newUser=req.body

@@ -10,7 +10,7 @@ const dburl="mongodb+srv://mamatha:mamatha@cluster0.inrsm.mongodb.net/userdb?ret
 const cloudinary=require('cloudinary').v2
 const multer=require('multer')
 const {CloudinaryStorage}=require('multer-storage-cloudinary')
-
+require('dotenv').config()
 
 
 
@@ -20,9 +20,9 @@ const {CloudinaryStorage}=require('multer-storage-cloudinary')
 
  //configure cloudinary
 cloudinary.config({
-    cloud_name: 'dp6roa3ci',
-    api_key: '636485635194798',
-    api_secret: 'I8WgMAr2unSA-XJUe8XLQHhg1as'
+    cloud_name: process.env. cloud_name,
+    api_key: process.env.api_key,
+    api_secret: process.env.api_secret
 });
 //configure cloudinary storage
 const clStorage = new CloudinaryStorage({

@@ -48,7 +48,8 @@ function AddProduct(){
   
     return(
         <form className="w-75   container"onSubmit={handleSubmit(onFormSubmit)}>
-	    <div>
+	   <h5>Adding Product</h5>
+        <div>
             
        <label htmlFor="un" className="mt-5"> ProductName</label>
 		       <input type="text" id="un" 
